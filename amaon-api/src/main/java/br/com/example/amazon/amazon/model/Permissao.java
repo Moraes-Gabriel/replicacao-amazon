@@ -1,9 +1,6 @@
 package br.com.example.amazon.amazon.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter @Setter @EqualsAndHashCode(of = "id") @ToString(of = "id")
+@Builder
 public class Permissao {
 
     @Id

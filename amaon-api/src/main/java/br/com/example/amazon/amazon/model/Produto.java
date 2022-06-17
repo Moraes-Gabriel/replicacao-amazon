@@ -61,4 +61,7 @@ public class Produto {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    public void adicionarQuantidadeProduto(Long quantidadeProdutoSomar){
+        this.quantidadeProduto += quantidadeProdutoSomar;
+    }
 }

@@ -33,6 +33,8 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
+
+
     @OneToMany
     @JoinColumn(name = "usuario_id")
     private List<Endereco> enderecos;
