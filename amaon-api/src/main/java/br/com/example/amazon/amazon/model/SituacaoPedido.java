@@ -4,5 +4,6 @@ public enum SituacaoPedido {
 
     PEDIDO,
     ENVIADO,
-    ENTREGUE
+    ENTREGUE,
+    CANCELADO
 }

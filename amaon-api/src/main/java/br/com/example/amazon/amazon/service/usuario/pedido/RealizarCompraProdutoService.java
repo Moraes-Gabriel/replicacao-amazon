@@ -9,10 +9,14 @@ import br.com.example.amazon.amazon.service.buscar.BuscarProdutoService;
 import br.com.example.amazon.amazon.service.security.UsuarioAutenticadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @Service
 public class RealizarCompraProdutoService {
@@ -33,6 +37,7 @@ public class RealizarCompraProdutoService {
     private BuscarProdutoService buscarProdutoService;
 
 
+    @Transactional
     public void comprar(ComprarProdutoRequest request) {
 
         LocalDate hoje = LocalDate.now();
@@ -43,7 +48,11 @@ public class RealizarCompraProdutoService {
 
         Produto produto = buscarProdutoService.porId(request.getProdutoId());
 
-        Double valorTotal = (produto.getPreco() * request.getQuantidade());
+        if((produto.getQuantidadeProduto() - request.getQuantidade()) < 0 ){
+            throw new ResponseStatusException(UNAUTHORIZED, "quantidade de produto indisponivel!");
+        }
+        produto.setQuantidadeProduto(produto.getQuantidadeProduto() - request.getQuantidade());
+
 
         Carrinho carrinho = Carrinho.builder().produto(produto).quantidadeProdutos(request.getQuantidade()).usuario(usuario).build();
         List<Carrinho> listCarrinho = new ArrayList<>();
@@ -53,7 +62,7 @@ public class RealizarCompraProdutoService {
                 .cartao(cartao)
                 .endereco(endereco)
                 .usuario(usuario)
-                .valorTotal(valorTotal)
+                .valorTotal(produto.getPreco() * request.getQuantidade())
                 .situacaoPedido(SituacaoPedido.PEDIDO)
                 .carrinho(listCarrinho)
                 .dataPedidoRealizado(hoje)
@@ -62,5 +71,6 @@ public class RealizarCompraProdutoService {
 
         usuario.getPedidos().add(pedido);
 
+        usuarioRepository.save(usuario);
     }
 }
