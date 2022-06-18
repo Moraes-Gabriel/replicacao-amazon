@@ -23,11 +23,11 @@ public class IncluirProdutoService {
     public void incluir(IncluirProdutoRequest request) {
 
         Usuario usuario = usuarioAutenticadoService.get();
-        Produto produto = toEntity(request);
 
-        Produto.builder().quantidadeProduto(0L)
-                .nota(0L)
-                        .usuario(usuario);
+        Produto produto = toEntity(request);
+        produto.setQuantidadeProduto(0L);
+        produto.setNota(0L);
+        produto.setUsuario(usuario);
 
         produtoRepository.save(produto);
     }

@@ -33,7 +33,13 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
+    private CarrinhoUsuario carrinho;
 
+    @OneToMany
+    @JoinColumn(name = "usuario_id")
+    private List<Pedido> pedidos;
 
     @OneToMany
     @JoinColumn(name = "usuario_id")

@@ -3,7 +3,6 @@ package br.com.example.amazon.amazon.model;
 import lombok.*;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -17,27 +16,17 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @Entity
 
-public class Carrinho {
+public class CarrinhoUsuario {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "produto_id")
-        private Produto produto;
+    @OneToMany
+    @JoinColumn(name = "carrinhoUsuario_id")
+    private List<Carrinho> carrinho;
 
     @Column(nullable = false)
-    private Long quantidadeProdutos;
+    private Double valorTotal;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
 }
-
-
-
-
-
-
-

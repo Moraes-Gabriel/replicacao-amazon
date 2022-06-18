@@ -1,10 +1,17 @@
 package br.com.example.amazon.amazon.controller;
 
+import br.com.example.amazon.amazon.controller.request.AdicionarCartaoRequest;
+import br.com.example.amazon.amazon.controller.request.AdicionarEnderecoRequeSt;
 import br.com.example.amazon.amazon.controller.request.IncluirUsuarioRequest;
 import br.com.example.amazon.amazon.controller.response.IncluirUsuarioResponse;
 import br.com.example.amazon.amazon.service.IncluirUsuarioService;
-import br.com.example.amazon.amazon.service.produto.AdicionarProdutoCarrinho;
-import br.com.example.amazon.amazon.service.usuario.RemoverProdutoCarrinho;
+import br.com.example.amazon.amazon.service.usuario.cartao.RemoverCartaoCreditoService;
+import br.com.example.amazon.amazon.service.enderecos.AdicionarEnderecoService;
+import br.com.example.amazon.amazon.service.enderecos.RemoverEnderecoService;
+import br.com.example.amazon.amazon.service.usuario.carrinho.AdicionarProdutoCarrinho;
+import br.com.example.amazon.amazon.service.usuario.carrinho.RemoverProdutoCarrinho;
+import br.com.example.amazon.amazon.service.usuario.cartao.AdicionarCartaoService;
+import br.com.example.amazon.amazon.service.usuario.pedido.FecharPedidoDoCarrinhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -24,15 +31,30 @@ public class UsuarioController {
     @Autowired
     private RemoverProdutoCarrinho removerProdutoCarrinho;
 
+    @Autowired
+    private AdicionarEnderecoService adicionarEnderecoService;
+
+    @Autowired
+    private RemoverEnderecoService removerEnderecoService;
+
+    @Autowired
+    private AdicionarCartaoService adicionarCartaoService;
+
+    @Autowired
+    private RemoverCartaoCreditoService removerCartaoCreditoService;
+
+    @Autowired
+    private FecharPedidoDoCarrinhoService fecharPedidoDoCarrinhoService;
+
     @PostMapping()
     public IncluirUsuarioResponse incluir (@Valid @RequestBody IncluirUsuarioRequest request) {
         return incluirUsuarioService.incluir(request);
     }
 
-    @PutMapping("/adicionar/produto/carrinho/{produtoId}")
+    @PutMapping("/adicionar/produto/carrinho/{produtoId}/{quantidade}")
     @Secured("ROLE_USER")
-    public void adicionarProdutoAoCarrinho(@PathVariable Long produtoId){
-        adicionarProdutoCarrinho.adicionar(produtoId);
+    public void adicionarProdutoAoCarrinho(@PathVariable Long produtoId, Long quantidade){
+        adicionarProdutoCarrinho.adicionar(produtoId, quantidade);
     }
 
     @PutMapping("/remover/produto/carrinho/{produtoId}")
@@ -41,6 +63,35 @@ public class UsuarioController {
         removerProdutoCarrinho.remover(produtoId);
     }
 
+    @PostMapping("/adicionar/endereço")
+    @Secured("ROLE_USER")
+    public void adicionarEnderecoAoUsuario(@Valid @RequestBody AdicionarEnderecoRequeSt request){
+        adicionarEnderecoService.adicionar(request);
+    }
+
+    @PutMapping("/remover/endereço")
+    @Secured("ROLE_USER")
+    public void removerEnderecoDoUsuario(@PathVariable Long enderecoId){
+        removerEnderecoService.remover(enderecoId);
+    }
+
+    @PostMapping("/adicionar/cartao")
+    @Secured("ROLE_USER")
+    public void adicionarCartaoAoUsuario(@Valid @RequestBody AdicionarCartaoRequest request){
+        adicionarCartaoService.adicionar(request);
+    }
+
+    @PutMapping("/remover/cartao")
+    @Secured("ROLE_USER")
+    public void removerCartaoDoUsuario(@PathVariable Long cartaoId){
+        removerCartaoCreditoService.remover(cartaoId);
+    }
+
+    @PutMapping("/fechar/pedido/carrinho")
+    @Secured("ROLE_USER")
+    public void setFecharPedidoDoCarrinhoService(@PathVariable Long cartaoId, Long enderecoId){
+        fecharPedidoDoCarrinhoService.fechar(cartaoId, enderecoId);
+    }
 
     /*@GetMapping()
     @Secured("ROLE_USER")

@@ -1,5 +1,7 @@
-package br.com.example.amazon.amazon.service.produto;
+package br.com.example.amazon.amazon.service.usuario.carrinho;
 
+import br.com.example.amazon.amazon.model.Carrinho;
+import br.com.example.amazon.amazon.model.CarrinhoUsuario;
 import br.com.example.amazon.amazon.model.Produto;
 import br.com.example.amazon.amazon.model.Usuario;
 import br.com.example.amazon.amazon.repository.ProdutoRepository;
@@ -25,12 +27,21 @@ public class AdicionarProdutoCarrinho {
     @Autowired
     private UsuarioAutenticadoService usuarioAutenticadoService;
 
-    public void adicionar(Long produtoId) {
+    public void adicionar(Long produtoId, Long quantidade) {
 
         Usuario usuario = usuarioAutenticadoService.get();
         Produto produto = buscarProdutoService.porId(produtoId);
 
-        usuario.getCarrinho().add(produto);
+        Double valorTotalCarrinho = usuario.getCarrinho().getValorTotal();
+        valorTotalCarrinho += produto.getPreco() * quantidade;
+
+        Carrinho carrinho = Carrinho.builder()
+                .produto(produto)
+                .quantidadeProdutos(quantidade)
+                .build();
+
+        usuario.getCarrinho().getCarrinho().add(carrinho);
+        usuario.getCarrinho().setValorTotal(valorTotalCarrinho);
 
         usuarioRepository.save(usuario);
     }

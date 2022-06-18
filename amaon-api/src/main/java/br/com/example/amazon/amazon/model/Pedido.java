@@ -25,10 +25,10 @@ public class Pedido {
     private Long id;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "produto_pedido",
-            joinColumns = @JoinColumn(name = "produto_id"),
+    @JoinTable(name = "carrinho_pedido",
+            joinColumns = @JoinColumn(name = "carrinho_id"),
             inverseJoinColumns = @JoinColumn(name = "pedido_id"))
-    private List<Produto> produtos;
+    private List<Carrinho> carrinho;
 
     @Column(nullable = false)
     private Double valorTotal;
@@ -38,7 +38,11 @@ public class Pedido {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "enderecoEntregue_id")
-    private Endereco enderecoEntregue;
+    private Endereco endereco;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enderecoEntregue_id")
+    private CartaoCredito cartao;
 
     @Column(nullable = false)
     private SituacaoPedido situacaoPedido;
@@ -54,4 +58,7 @@ public class Pedido {
 
     @Column
     private String entregueAssinado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Usuario usuario;
 }
