@@ -2,6 +2,7 @@ package br.com.example.amazon.amazon.controller;
 
 import br.com.example.amazon.amazon.controller.request.AdicionarCartaoRequest;
 import br.com.example.amazon.amazon.controller.request.AdicionarEnderecoRequeSt;
+import br.com.example.amazon.amazon.controller.request.ComprarProdutoRequest;
 import br.com.example.amazon.amazon.controller.request.IncluirUsuarioRequest;
 import br.com.example.amazon.amazon.controller.response.IncluirUsuarioResponse;
 import br.com.example.amazon.amazon.service.IncluirUsuarioService;
@@ -12,6 +13,7 @@ import br.com.example.amazon.amazon.service.usuario.carrinho.AdicionarProdutoCar
 import br.com.example.amazon.amazon.service.usuario.carrinho.RemoverProdutoCarrinho;
 import br.com.example.amazon.amazon.service.usuario.cartao.AdicionarCartaoService;
 import br.com.example.amazon.amazon.service.usuario.pedido.FecharPedidoDoCarrinhoService;
+import br.com.example.amazon.amazon.service.usuario.pedido.RealizarCompraProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +47,9 @@ public class UsuarioController {
 
     @Autowired
     private FecharPedidoDoCarrinhoService fecharPedidoDoCarrinhoService;
+
+    @Autowired
+    private RealizarCompraProdutoService realizarCompraProdutoService;
 
     @PostMapping()
     public IncluirUsuarioResponse incluir (@Valid @RequestBody IncluirUsuarioRequest request) {
@@ -89,8 +94,14 @@ public class UsuarioController {
 
     @PutMapping("/fechar/pedido/carrinho")
     @Secured("ROLE_USER")
-    public void setFecharPedidoDoCarrinhoService(@PathVariable Long cartaoId, Long enderecoId){
+    public void fecharPedidoDoCarrinhoService(@PathVariable Long cartaoId, Long enderecoId){
         fecharPedidoDoCarrinhoService.fechar(cartaoId, enderecoId);
+    }
+
+    @PutMapping("/comprar/produto")
+    @Secured("ROLE_USER")
+    public void comprarProduto(@Valid @RequestBody ComprarProdutoRequest request){
+        realizarCompraProdutoService.comprar(request);
     }
 
     /*@GetMapping()
