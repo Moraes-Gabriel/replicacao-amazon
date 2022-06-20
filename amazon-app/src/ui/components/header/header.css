@@ -1,0 +1,101 @@
+header {
+  background-color: rgb(19, 25, 33);
+  height: 80px;
+  color: white;
+}
+.header_header {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.header-img-logoAmazon{
+    display: flex;
+    width: 100%;
+}
+.header_endereco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    width: 13%;
+}
+.header_endereco-detalhes .header_enviar-para {
+  font-size: 12px;
+  display: flex;
+  margin: 0;
+  margin-left: 3px;
+}
+.header_endereco-detalhes .header_enviar-para-endereco {
+  font-size: 16px;
+  margin: 0;
+  margin-left: 3px;
+}
+.header_endereco-detalhes {
+    display: flex;
+    flex-direction: column;
+  }
+
+form {
+    width: 50%;
+    display: flex;
+    align-items: center ;
+}
+form input {
+    width: 100%;
+    height: 55%;
+    align-items: center;
+}
+
+
+.header_lado-direito {
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+}
+.header_carrinho {
+    display: flex;
+    align-items: center;
+}
+.header-img-logoAmazon {
+  height: 100%;
+}
+.header-img-pin {
+  height: 30px;
+}
+.header_img-lupa {
+  height: 66%;
+}
+.header_contas-listas  {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 0 25px ;
+}
+.header_contas-listas h1 {
+  font-size: 14px;
+  margin: 0;
+  align-self: start;
+}
+.header_contas-listas-h1 {
+    color: grey;
+}
+
+.header_devolucoes-pedidos {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 0 25px ;
+}
+.header_devolucoes-pedidos h1 {
+    font-size: 14px;
+    margin: 0;
+    align-self: start;
+}
+.header_div-img-lupa {
+    background-color: rgb(254,189,105);
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
