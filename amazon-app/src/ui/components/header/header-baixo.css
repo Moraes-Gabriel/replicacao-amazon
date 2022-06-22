@@ -1,0 +1,24 @@
+
+.header_baixo {
+    height: 40px;
+    background-color: rgb(35,47,62);
+    display: flex;
+    justify-content: space-around;
+}
+
+.header_baixo {
+   
+    display: flex;
+    align-items: center;
+}
+
+
+.header_baixo h1 {
+    margin: 0;
+    font-size: 14px;
+    margin-right: 10px;
+} 
+
+.header_baixo-div-main {
+    display: flex;
+}

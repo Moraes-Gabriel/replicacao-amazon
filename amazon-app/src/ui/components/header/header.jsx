@@ -1,4 +1,5 @@
 import "./header.css";
+import "./header-baixo.css";
 import logoAmazon from "../../../asserts/img/logo-amazon.png";
 import pin from "../../../asserts/img/pin.png";
 import lupa from "../../../asserts/img/lupa.png";
@@ -21,7 +22,7 @@ export function Header() {
           <img src={logoAmazon} alt="" className="header-img-logoAmazon" />
         </div>
         <div className="header_endereco">
-                <img src={pin} alt="" className="header-img-pin" />
+          <img src={pin} alt="" className="header-img-pin" />
           <div className="header_endereco-detalhes">
             <h1 className="header_enviar-para">enviar para giovanna </h1>
             <h1 className="header_enviar-para-endereco">
@@ -53,6 +54,22 @@ export function Header() {
           </div>
 
           <div className="header_carrinho">carrinho</div>
+        </div>
+      </div>
+      <div className="header_baixo">
+        <div className="header_baixo-div-main">
+          <h1> lll todos</h1>
+          <h1> Venda na amazon</h1>
+          <h1> Compra novamente</h1>
+          <h1> Ofertas do dia </h1>
+          <h1> Eletronicos</h1>
+          <h1> Computadores</h1>
+          <h1> Brinquedos e jogos</h1>
+          <h1> Ideias para presente</h1>
+          <h1> Games </h1>
+        </div>
+        <div>
+          <h1>prime video assista agora</h1>
         </div>
       </div>
     </header>
