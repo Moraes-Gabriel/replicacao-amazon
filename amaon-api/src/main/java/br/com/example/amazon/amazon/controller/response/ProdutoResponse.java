@@ -19,7 +19,7 @@ public class ProdutoResponse {
     private CategoriaProduto categoria;
     private Double preco;
     private Long quantidadeProduto;
-    private Long nota;
+    private Double nota;
     private int quantidadeAvaliacoes;
     private int quantidadePerguntas;
     private List<String> imagens;

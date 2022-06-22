@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -26,6 +27,7 @@ public class CartaoCredito {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Size(min = 16, max=16)
     @Column(nullable = false, unique = true)
     private String numeroDoCartao;
 
