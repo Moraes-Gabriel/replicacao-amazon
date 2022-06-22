@@ -25,19 +25,24 @@ public class AvaliacaoProduto {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    private String titulo;
+
     private String descricao;
 
     @Column(nullable = false)
-    private Long nota;
+    private Double nota;
 
     @Column(nullable = false)
     private LocalDate data;
 
-    @Size(min = 1, max = 3)
+    @Size(max = 5)
     @ElementCollection
     @CollectionTable(name = "imagensAvaliacaoProduto")
     private List<String> imagens;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_voto_util",

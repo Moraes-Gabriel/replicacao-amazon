@@ -38,7 +38,7 @@ public class Produto {
     private Long quantidadeProduto;
 
     @Column(nullable = false)
-    private Long nota;
+    private Double nota;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "produto_id")

@@ -1,4 +1,4 @@
-package br.com.example.amazon.amazon.service;
+package br.com.example.amazon.amazon.service.usuario;
 
 import br.com.example.amazon.amazon.controller.request.IncluirUsuarioRequest;
 import br.com.example.amazon.amazon.controller.response.IncluirUsuarioResponse;

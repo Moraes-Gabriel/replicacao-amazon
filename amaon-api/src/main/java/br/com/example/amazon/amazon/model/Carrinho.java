@@ -24,8 +24,8 @@ public class Carrinho {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "produto_id")
-        private Produto produto;
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
     @Column(nullable = false)
     private Long quantidadeProdutos;

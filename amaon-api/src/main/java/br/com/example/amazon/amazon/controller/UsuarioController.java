@@ -1,11 +1,8 @@
 package br.com.example.amazon.amazon.controller;
 
-import br.com.example.amazon.amazon.controller.request.AdicionarCartaoRequest;
-import br.com.example.amazon.amazon.controller.request.AdicionarEnderecoRequeSt;
-import br.com.example.amazon.amazon.controller.request.ComprarProdutoRequest;
-import br.com.example.amazon.amazon.controller.request.IncluirUsuarioRequest;
+import br.com.example.amazon.amazon.controller.request.*;
 import br.com.example.amazon.amazon.controller.response.IncluirUsuarioResponse;
-import br.com.example.amazon.amazon.service.IncluirUsuarioService;
+import br.com.example.amazon.amazon.service.usuario.IncluirUsuarioService;
 import br.com.example.amazon.amazon.service.usuario.cartao.RemoverCartaoCreditoService;
 import br.com.example.amazon.amazon.service.enderecos.AdicionarEnderecoService;
 import br.com.example.amazon.amazon.service.enderecos.RemoverEnderecoService;
@@ -103,6 +100,9 @@ public class UsuarioController {
     public void comprarProduto(@Valid @RequestBody ComprarProdutoRequest request){
         realizarCompraProdutoService.comprar(request);
     }
+
+
+
 
     /*@GetMapping()
     @Secured("ROLE_USER")

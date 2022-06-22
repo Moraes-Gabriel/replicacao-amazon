@@ -1,4 +1,4 @@
-package br.com.example.amazon.amazon.service;
+package br.com.example.amazon.amazon.service.produto;
 
 import br.com.example.amazon.amazon.controller.request.IncluirProdutoRequest;
 import br.com.example.amazon.amazon.mapper.IncluirProdutoMapper;
@@ -25,6 +25,7 @@ public class IncluirProdutoService {
         Usuario usuario = usuarioAutenticadoService.get();
 
         Produto produto = toEntity(request);
+
         produto.setQuantidadeProduto(0L);
         produto.setNota(0L);
         produto.setUsuario(usuario);
