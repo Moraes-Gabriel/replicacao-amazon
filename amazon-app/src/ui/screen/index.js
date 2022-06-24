@@ -1,0 +1,1 @@
+export { TelaPrincipal } from "./telaPrincipal/TelaPrincipal";

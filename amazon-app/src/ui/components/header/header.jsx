@@ -4,6 +4,7 @@ import logoAmazon from "../../../asserts/img/logo-amazon.png";
 import pin from "../../../asserts/img/pin.png";
 import lupa from "../../../asserts/img/lupa.png";
 import { useState } from "react";
+import React from "react";
 
 export function Header() {
   const [inputValues, setInputValues] = useState();

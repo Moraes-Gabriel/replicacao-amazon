@@ -1,4 +1,5 @@
 import "./itens-tela-principal.css"
+import React from "react";
 
 export function ItemTelaPrincipal(titulo, itens) {
 
