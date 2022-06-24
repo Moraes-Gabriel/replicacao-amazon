@@ -2,13 +2,24 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Header } from "./ui/components/";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { TelaPrincipal } from "./ui/screen";
-import React from "react";
+import { LoginScreen, RegisterScreen, TelaPrincipal } from "./ui/screen";
 
 function App() {
   return (
     <div className="App">
-      <TelaPrincipal/>
+
+      <Routes>
+        <Route path="/" element={<LoginScreen />} />
+
+        <Route path="/register" element={<RegisterScreen />} />
+
+        <Route
+          path="/principal"
+          element={
+              <TelaPrincipal />
+          }
+        />
+      </Routes>
     </div>
   );
 }

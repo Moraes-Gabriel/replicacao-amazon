@@ -1,0 +1,33 @@
+.login_div-main {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+.login_div_logo{ 
+    width: 40%;
+}
+.login_div_content {
+
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    justify-content: center;
+}
+
+.login-form input {
+    width: 60%;
+    margin-top: 15px;
+}
+.login-form button {
+    margin-top: 15px;
+    width: 30%;
+    border-radius: 20%;
+    background-color: #80b833;
+    margin-left: 80px;
+}
+.login-form a {
+    margin-left: 36px;
+    margin-top: 10px;
+}
