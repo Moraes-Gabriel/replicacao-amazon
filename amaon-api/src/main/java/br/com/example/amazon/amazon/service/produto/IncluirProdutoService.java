@@ -27,7 +27,7 @@ public class IncluirProdutoService {
         Produto produto = toEntity(request);
 
         produto.setQuantidadeProduto(0L);
-        produto.setNota(0L);
+        produto.setNota(0.0);
         produto.setUsuario(usuario);
 
         produtoRepository.save(produto);
